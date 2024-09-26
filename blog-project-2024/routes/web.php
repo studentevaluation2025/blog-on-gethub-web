@@ -7,6 +7,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('components_list_group', function () {
     return view('backend/components-list-group');
 });
@@ -92,7 +93,6 @@ Route::get('/pages-login', function () {
 });
 
 
-
 Route::get('/charts-apexcharts', function () {
     return view('backend/charts-apexcharts');
 })->name('charts.apexcharts');
@@ -128,6 +128,8 @@ Route::get('frontend-about', function () {
 });
 
 
+
+
 Route::get('frontend-category', function () {
     return view('frontend/category');
 });
@@ -144,4 +146,11 @@ Route::get('frontend-search', function () {
 Route::get('frontend-single-post', function () {
     return view('frontend/single-post');
 });
+
+
+
+Route::get('frontend-index', function () {
+    return view('frontend/index');
+});
+
 
