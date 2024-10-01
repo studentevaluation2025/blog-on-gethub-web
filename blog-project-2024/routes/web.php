@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -125,7 +126,7 @@ Route::get('/components-carousel', function () {
 
 Route::get('frontend-about', function () {
     return view('frontend/about');
-});
+})->name('frontend-about');
 
 
 
@@ -136,16 +137,16 @@ Route::get('frontend-category', function () {
 
 Route::get('frontend-contact', function () {
     return view('frontend/contact');
-});
+})->name('frontend-contact');
 
 Route::get('frontend-search', function () {
     return view('frontend/search');
-});
+})->name('frontend-search');
 
 
 Route::get('frontend-single-post', function () {
     return view('frontend/single-post');
-});
+})->name('frontend-single-post');
 
 
 
@@ -153,4 +154,6 @@ Route::get('frontend-index', function () {
     return view('frontend/index');
 });
 
+Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
