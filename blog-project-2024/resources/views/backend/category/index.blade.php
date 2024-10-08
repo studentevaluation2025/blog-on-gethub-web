@@ -61,7 +61,7 @@
                         </td>
                         <td>
                             <!-- Edit Button -->
-                            <a href="{{ url('/backend/category/edit') }}/{{ $category->id }}" class="btn btn-primary btn-sm">
+                            <a href="{{ url('/category/edit') }}/{{ $category->id }}" class="btn btn-primary btn-sm">
                                 <i class="bi bi-pencil"></i>
                             </a>
 

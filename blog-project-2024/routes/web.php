@@ -2,11 +2,97 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+//use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserPermissionController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
 
 Route::get('/', function () {
+    return redirect(route('login'));
+ });
+
+//  Route::middleware(['auth:web', 'verified'])->group(function () {
+//     // Route::get('/dashboard', function () {
+//     //     return view('dashboard');
+//     // })->name('dashboard');
+//     // Route::get('/backend/dashboard', function () {
+//     //     return view('backend.dashboard');
+//     // })->name('backend_dashboard');
+//     //backend dashboard route
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::get('/dashboard/posts/{timePeriod?}', [DashboardController::class, 'posts'])->name('dashboard.posts');
+
+// //category routes
+// Route::get('/backend/category/index', [CategoryController::class, 'index'])->name('category.index');
+// Route::post('/backend/category/store', [CategoryController::class, 'store'])->name('category.store');
+// Route::get('/backend/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+// Route::post('/backend/category/update', [CategoryController::class, 'update'])->name('category.update');
+// Route::delete('/backend/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+// Route::get('/backend/category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
+
+// //post routes
+// Route::get('/backend/post/index', [PostController::class, 'index'])->name('post.index');
+// Route::post('/backend/post/store', [PostController::class, 'store'])->name('post.store');
+// Route::get('/backend/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
+// Route::post('/backend/post/update', [PostController::class, 'update'])->name('post.update');
+// Route::delete('/backend/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+// Route::get('/backend/post/status/{id}', [PostController::class, 'status'])->name('post.status');
+
+// //logout
+// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+//  });
+Route::middleware(['auth:web', 'verified'])->group(function () {
+     // Define the dashboard route expected by Jetstream/Fortify
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // ---------- Dashboard Routes ----------
+    Route::redirect('/backend/dashboard', '/dashboard/index');
+    Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/posts/{timePeriod?}', [DashboardController::class, 'posts'])->name('dashboard.posts');
+
+    // ---------- Category Routes ----------
+    // Redirect for missing 'index', 'store', and 'edit'
+    Route::redirect('/category', '/backend/category/index');
+    Route::redirect('/category/create', '/backend/category/store');
+    Route::redirect('/category/edit', '/backend/category/index');  // Redirect to index if `edit` is incomplete
+
+    // Actual category routes
+    Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
+
+    // ---------- Post Routes ----------
+    // Redirect for missing 'index', 'store', and 'edit'
+    Route::redirect('/post', '/backend/post/index');
+    Route::redirect('/post/create', '/backend/post/store');
+    Route::redirect('/post/edit', '/backend/post/index');  // Redirect to index if `edit` is incomplete
+
+    // Actual post routes
+    Route::get('/post/index', [PostController::class, 'index'])->name('post.index');
+    Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/post/update', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+    Route::get('/post/status/{id}', [PostController::class, 'status'])->name('post.status');
+
+    //User Management Routes
+    Route::get('/user/index', [UserController::class, 'index'])->name('users.index');
+    Route::get('/userPermissions', [UserPermissionController::class, 'index'])->name('user_permissions.index');
+    Route::get('/roles', [RolesController::class, 'index'])->name('role.index');
+
+    // ---------- Logout Route ----------
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+
+Route::get('/frontend/index', function () {
     return view('frontend/index');
 });
 
@@ -156,24 +242,6 @@ Route::get('frontend-single-post', function () {
 Route::get('frontend-index', function () {
     return view('frontend/index');
 });
-
-//backend dashboard route
-Route::get('/backend/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-//category routes
-Route::get('/backend/category/index', [CategoryController::class, 'index'])->name('category.index');
-Route::post('/backend/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::get('/backend/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/backend/category/update', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('/backend/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-Route::get('/backend/category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
-
-//post routes
-Route::get('/backend/post/index', [PostController::class, 'index'])->name('post.index');
-Route::post('/backend/post/store', [PostController::class, 'store'])->name('post.store');
-Route::get('/backend/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
-Route::post('/backend/post/update', [PostController::class, 'update'])->name('post.update');
-Route::delete('/backend/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
-Route::get('/backend/post/status/{id}', [PostController::class, 'status'])->name('post.status');
 
 
 

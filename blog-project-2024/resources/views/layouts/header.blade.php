@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('backend/assets/img/logo.png') }}" alt="">
+        <img src="{{ asset('backend/image/logo.png') }}" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -181,12 +181,18 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            {{-- <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
-            </li>
+            </li> --}}
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.show') }}">
+                  <i class="bi bi-person"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -211,12 +217,25 @@
               <hr class="dropdown-divider">
             </li>
 
+            {{-- <li>
+                <form method="POST" action="{{ route('logout') }}" class="d-flex align-items-center">
+                    @csrf
+                    <button type="submit" class="dropdown-item d-flex align-items-center" style="border:none; background:none; padding: 0; margin: 0; width: 100%;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </form>
+            </li> --}}
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+                <form method="POST" action="{{ route('logout') }}" class="d-flex align-items-center">
+                    @csrf
+                    <button type="submit" class="dropdown-item d-flex align-items-center" style="border: none; background: none; padding: 10px 20px; text-align: left; width: 100%; color: #212529; font-size: 14px; display: flex; align-items: center; cursor: pointer;">
+                        <i class="bi bi-box-arrow-right" style="margin-right: 10px;"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </form>
             </li>
+
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
