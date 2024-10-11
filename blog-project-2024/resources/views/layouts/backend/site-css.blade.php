@@ -1,4 +1,4 @@
-<link href="{{ asset('backend/assets/img/favicon.png') }}" rel="icon">
+<link href="{{ asset('backend/image/logo.png') }}" rel="icon">
   <link href="{{ asset('backend/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
