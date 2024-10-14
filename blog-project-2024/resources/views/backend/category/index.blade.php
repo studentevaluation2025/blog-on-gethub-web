@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.backend.base')
 @section('content')
 @php
     $buttonTitle = "Save";
