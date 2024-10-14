@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta content="" name="description">
     <meta content="" name="keywords">
-    @include('layouts.site-css')
+    @include('layouts.backend.site-css')
 
     <title>
         
@@ -17,10 +17,10 @@
 
 </head>
 <body>
-    @include('layouts.header')
-    @include('layouts.aside')
+    @include('layouts.backend.header')
+    @include('layouts.backend.aside')
     @yield('content')
-    @include('layouts.footer')
-    @include('layouts.site-js')
+    @include('layouts.backend.footer')
+    @include('layouts.backend.site-js')
 </body>
 </html>

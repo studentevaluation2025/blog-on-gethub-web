@@ -157,3 +157,18 @@ Route::get('frontend-index', function () {
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
+<<<<<<< Updated upstream
+=======
+//post routes
+Route::get('/backend/post/index', [PostController::class, 'index'])->name('post.index');
+Route::post('/backend/post/store', [PostController::class, 'store'])->name('post.store');
+Route::get('/backend/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
+Route::post('/backend/post/update', [PostController::class, 'update'])->name('post.update');
+Route::delete('/backend/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::get('/backend/post/status/{id}', [PostController::class, 'status'])->name('post.status');
+
+
+
+require __DIR__ . '/ubaid.php';
+require __DIR__ . '/sohail.php';
+>>>>>>> Stashed changes
