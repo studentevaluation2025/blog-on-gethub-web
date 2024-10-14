@@ -123,4 +123,26 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+
+    // 'providers' => [
+    //     // Other Service Providers...
+
+    //     Laravel\Socialite\SocialiteServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+    //     // Other Facade Aliases...
+
+    //     'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    // ],
+
+
+
+    // 'google' => [
+    //     'client_id' => env('GOOGLE_CLIENT_ID'),
+    //     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    //     'redirect' => env('GOOGLE_REDIRECT_URI'),
+    // ],
+
 ];

@@ -1,4 +1,6 @@
-@extends('layouts.base')
+<<<<<<< Updated upstream
+=======
+@extends('layouts.backend.base')
 @section('content')
 @php
     $buttonTitle = "Save";
@@ -66,13 +68,13 @@
                                 <i class="bi {{ $post->status == 1 ? 'bi-eye' : 'bi-eye-slash' }}"></i>
                             </button>
                         </td>
-
                         <td>
                             <!-- Edit Button -->
-                            <a href="{{ url('/post/edit') }}/{{ $post->id }}" class="btn btn-primary btn-sm">
+                            <a href="{{ url('/backend/post/edit') }}/{{ $post->id }}" class="btn btn-primary btn-sm">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                                <!-- Delete Button -->
+
+                            <!-- Delete Button -->
                             <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -136,3 +138,4 @@
 
 
 @endsection
+>>>>>>> Stashed changes
