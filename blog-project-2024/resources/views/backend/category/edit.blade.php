@@ -1,4 +1,6 @@
-@extends('layouts.base')
+<<<<<<< Updated upstream
+=======
+@extends('layouts.backend.base')
 @section('content')
 @php
     $buttonTitle = "Update";
@@ -23,3 +25,4 @@
     </div>
 </section>
 @endsection
+>>>>>>> Stashed changes
